@@ -1,0 +1,56 @@
+.c-button {
+  display: inline-block;
+  position: relative;
+  padding: 1.5rem 3rem;
+  min-width: 200px;
+  font-size: 1.5rem;
+  text-decoration: none;
+
+  &--inverse {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: var(--primary-color);
+    outline: none;
+    transition: all 0.25s;
+
+    &:hover,
+    &:active {
+      color: white;
+      background-color: var(--primary-color-light);
+      border-color: var(--primary-color-light);
+    }
+  }
+
+  &--arrow {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--primary-color);
+      mask-image: url("~assets/icons/bx-right-arrow-alt.svg");
+    }
+
+    &:hover {
+      &:after {
+        background-color: white;
+        animation: arrowHover 0.5s;
+      }
+    }
+
+    @keyframes arrowHover {
+      0%, 100% {
+        right: 2rem;
+      }
+      50% {
+        right: 1.5rem;
+      }
+    }
+  }
+}

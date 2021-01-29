@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat Regular"),
+    url("~assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-size: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: local("Quicksand Regular"),
+    url("~assets/fonts/Quicksand-Regular.ttf") format("truetype");
+  font-size: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+html {
+  font-family: "Montserrat";
+}
+
+*,
+*:before,
+*:after {
+  font-family: inherit;
+}
+
+.title {
+  font-family: "Quicksand";
+  font-size: 4rem;
+
+  @include respond (tab-port) {
+    font-size: 6rem;
+  }
+
+  @include respond (small-desktop) {
+    font-size: 12rem;
+  }
+}
+
+.h1 {
+  font-family: "Quicksand";
+  font-size: 2.5rem;
+  text-decoration: underline;
+}
+
+.h2 {
+  font-size: 1.5rem;
+
+  @include respond (small-desktop) {
+    font-size: 2.5rem;
+  }
+}

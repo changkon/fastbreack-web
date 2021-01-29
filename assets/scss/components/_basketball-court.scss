@@ -1,0 +1,376 @@
+// Basketball court specific variables
+$floor-padding-vertical-small: 0.5rem;
+$floor-padding-horizontal-small: 0.5rem;
+$floor-padding-vertical: 3.5rem;
+$floor-padding-horizontal: 12.5rem;
+$baseline-padding: 1rem;
+$parquet-floor-light: rgba(255, 214, 186, 0.5);
+$parquet-floor-medium: rgba(255, 214, 186, 0.7);
+// $parquet-floor-color: #ffd6ba;
+$parquet-floor-color: #ffce89;
+$parquet-floor-outline: #ffb563;
+$court-color: #52b788;
+$parquet-floor-border: white;
+
+.basketball-court {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: $court-color;
+
+  &__floor {
+    position: absolute;
+    top: $floor-padding-vertical-small;
+    left: $floor-padding-horizontal-small;
+    bottom: $floor-padding-vertical-small;
+    right: $floor-padding-horizontal-small;
+    background-color: $parquet-floor-border;
+    padding: $baseline-padding;
+
+    @include respond(tab-land) {
+      top: $floor-padding-vertical;
+      bottom: $floor-padding-vertical;
+      left: $floor-padding-vertical;
+      right: $floor-padding-vertical;
+    }
+
+    @include respond(big-desktop) {
+      top: $floor-padding-vertical;
+      bottom: $floor-padding-vertical;
+      left: $floor-padding-horizontal;
+      right: $floor-padding-horizontal;
+    }
+  }
+
+  &__tile {
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparentize($parquet-floor-color, 0.45) 0% 20%,
+        transparentize($parquet-floor-color, 0.5) 20% 40%,
+        transparentize($parquet-floor-color, 0.35) 40% 60%,
+        transparentize($parquet-floor-color, 0.4) 60% 100%
+      ),
+      repeating-linear-gradient(
+        25deg,
+        transparentize($parquet-floor-color, 0.8) 0% 25%,
+        transparent 25% 100%
+      ),
+      repeating-linear-gradient(
+        to left,
+        transparentize($parquet-floor-color, 0.9) 0% 65%,
+        transparent 65% 100%
+      ),
+      repeating-linear-gradient(
+        145deg,
+        transparent 0% 65%,
+        transparentize($parquet-floor-color, 0.8) 65% 90%,
+        transparent 90%
+      );
+      background-size: 50px 50px;
+      background-repeat: round;
+
+    @include respond(tab-port) {
+      background-size: 75px 75px;
+    }
+
+    @include respond(tab-land) {
+      background-size: 125px 125px;
+    }
+  }
+
+  &__half-court-line {
+    // Initially vertically lined
+    position: absolute;
+    height: 0.5rem;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: white;
+
+    @include respond(tab-land) {
+      height: 100%;
+      width: 0.5rem;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__baseline {
+    position: absolute;
+    width: 20rem;
+    max-width: 13%;
+    max-height: 13%;
+    height: 0.5rem;
+    background-color: white;
+
+    &--left {
+      left: 0%;
+
+      @include respond(tab-land) {
+        left: 35%;
+      }
+
+      @include respond(small-desktop) {
+        left: 25%;
+      }
+    }
+
+    &--right {
+      right: 0%;
+
+      @include respond(tab-land) {
+        right: 35%;
+      }
+
+      @include respond(small-desktop) {
+        right: 25%;
+      }
+    }
+
+    &--top {
+      top: 25%;
+
+      @include respond(tab-land) {
+        top: 0%;
+      }
+    }
+
+    &--bottom {
+      bottom: 25%;
+
+      @include respond(tab-land) {
+        bottom: 0%;
+      }
+    }
+
+    @include respond(tab-land) {
+      height: 10rem;
+      width: 0.5rem;
+    }
+
+  }
+
+  &__center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7rem;
+    transform: translate(-50%, -50%);
+    border-width: 0.5rem;
+    border-color: $court-color;
+    border-style: solid;
+    border-radius: 50%;
+    background-color: transparent;
+    height: 15rem;
+    width: 15rem;
+
+    @include respond(tab-port) {
+      height: 20rem;
+      width: 20rem;
+    }
+
+    @include respond(tab-land) {
+      height: 25rem;
+      width: 25rem;
+    }
+  }
+
+  &__paint {
+    position: absolute;
+    height: 10rem;
+    width: 10rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 0.5rem solid $parquet-floor-border;
+    background-color: $court-color;
+
+    &--left {
+      top: $baseline-padding;
+      border-top: none;
+
+      & > div {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+        border-top: 0.5rem solid $parquet-floor-border;
+        border-right: 0.5rem solid $parquet-floor-border;
+        border-bottom: 0.5rem dotted $parquet-floor-border;
+        border-left: 0.5rem dotted $parquet-floor-border;
+        transform: translateY(50%) translateX(-50%) rotate(135deg);
+      }
+
+      @include respond (tab-port) {
+        & > div {
+          height: 10rem;
+          width: 10rem;
+        }
+      }
+
+      @include respond (tab-land) {
+        left: 0;
+        border-left: none;
+        border-top: 0.5rem solid $parquet-floor-border;
+        // width: 8rem;
+
+        // Child selector
+        & > div {
+          top: 50%;
+          right: 0;
+          bottom: initial;
+          left: initial;
+          height: 12.5rem;
+          width: 12.5rem;
+          transform: translateY(-50%) translateX(50%) rotate(45deg);
+        }
+      }
+
+      // @include respond (big-desktop) {
+      //   left: $floor-padding-horizontal;
+      // }
+    }
+
+    &--right {
+      bottom: $baseline-padding;
+      border-bottom: none;
+
+      & > div {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+        border-top: 0.5rem solid $parquet-floor-border;
+        border-right: 0.5rem solid $parquet-floor-border;
+        border-bottom: 0.5rem dotted $parquet-floor-border;
+        border-left: 0.5rem dotted $parquet-floor-border;
+        transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+      }
+
+      @include respond (tab-port) {
+        & > div {
+          height: 10rem;
+          width: 10rem;
+        }
+      }
+
+      @include respond (tab-land) {
+        left: initial;
+        right: 0;
+        border-right: none;
+        border-bottom: 0.5rem solid $parquet-floor-border;
+
+        // Child selector
+        & > div {
+          top: 50%;
+          left: 0;
+          bottom: initial;
+          left: initial;
+          height: 12.5rem;
+          width: 12.5rem;
+          transform: translateY(-50%) translateX(-50%) rotate(-135deg);
+        }
+      }
+
+      // @include respond (big-desktop) {
+      //   right: $floor-padding-horizontal;
+      // }
+    }
+
+    @include respond (tab-port) {
+      height: 17rem;
+      width: 15rem;
+    }
+
+    @include respond (tab-land) {
+      top: 50%;
+      transform: translateY(-50%);
+      height: 18rem;
+      width: 20rem;
+    }
+  }
+
+  &__three-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 20rem;
+    border-left: 0.5rem solid $parquet-floor-border;
+    border-right: 0.5rem solid $parquet-floor-border;
+
+    &--left {
+      top: 0%;
+      border-bottom: 0.5rem solid $parquet-floor-border;
+      border-radius: 0 0 135rem 135rem;
+
+      @include respond(tab-port) {
+        border-radius: 0 0 150rem 150rem;
+      }
+
+      @include respond (tab-land) {
+        left: 0;
+        border-left: none;
+        border-radius: 0 135rem 135rem 0;
+      }
+    }
+
+    &--right {
+      bottom: 0%;
+      border-top: 0.5rem solid $parquet-floor-border;
+      border-radius: 135rem 135rem 0 0;
+
+      @include respond (tab-land) {
+        // left: 0;
+        left: initial;
+        right: 0;
+        border-right: none;
+        border-left: 0.5rem solid $parquet-floor-border;
+        border-radius: 135rem 0 0 135rem;
+      }
+    }
+
+    @include respond(tab-port) {
+      height: 30rem;
+    }
+
+    @include respond (tab-land) {
+      top: 50%;
+      transform: translateY(-50%);
+      height: 85%;
+      width: 32rem;
+      border-top: 0.5rem solid $parquet-floor-border;
+      border-bottom: 0.5rem solid $parquet-floor-border;
+    }
+
+    @include respond (small-desktop) {
+      width: 37.5rem;
+    }
+  }
+
+  &__animate {
+    & > div {
+      position: absolute;
+    }
+  }
+
+  &__ball {
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    background-color: orange;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

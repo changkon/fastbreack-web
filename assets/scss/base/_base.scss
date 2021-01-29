@@ -1,0 +1,18 @@
+html {
+  font-size: 62.5% !important;
+  box-sizing: border-box;
+}
+
+// Global variables
+:root
+{
+  --primary-color: #2DAE67;
+  --primary-color-light: #31BF71;
+  --primary-backdrop-color: rgba(37, 37, 37, 0.75);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

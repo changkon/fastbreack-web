@@ -1,0 +1,145 @@
+.c-scoreboard {
+  position: sticky;
+  top: 50px;
+  z-index: map-get($zindex, scoreboard);
+  box-shadow: 0 0 5px #dbdbdb;
+
+  &__container {
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+    height: 80px;
+    background-color: white;
+    padding: 0 10px;
+  }
+
+  &__status {
+    font-weight: bold;
+    color: red;
+  }
+
+  &__match {
+    position: relative;
+    width: 125px;
+    display: grid;
+    grid-template-rows: [status] 15px [team1] 1fr [team2] 1fr;
+    row-gap: 5px;
+    padding: 5px 5px;
+    cursor: pointer;
+
+    &::after {
+      content: "View more";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      background-color: white;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 0.9;
+      }
+    }
+
+    &:not(:last-of-type) {
+      border-right: solid 0.5px #dbdbdb;
+    }
+  }
+
+  &__team {
+    display: grid;
+    grid-template-columns: [info] 70% [score] 30%;
+    grid-template-rows: 60% 40%;
+    line-height: 1;
+    align-items: center;
+  }
+
+  &__name {
+    grid-column: info / score;
+    grid-row: span 1;
+    font-weight: bold;
+  }
+
+  &__record {
+    grid-column: info / score;
+    grid-row: span 1;
+    font-size: 0.8rem;
+    color: grey;
+  }
+
+  &__score {
+    grid-column: score / -1;
+    grid-row: 1 / -1;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: grey;
+
+    &--winner {
+      color: black;
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    visibility: hidden;
+    z-index: map-get($zindex, scoreboard-nav);
+
+    &:hover {
+      background-color: var(--primary-color-light);
+    }
+
+    &--left {
+      left: 10px;
+      mask-image: url("~assets/icons/bx-left-arrow-alt.svg");
+      &:hover {
+        animation: arrowLeftHover 0.5s;
+      }
+    }
+
+    &--right {
+      right: 10px;
+      mask-image: url("~assets/icons/bx-right-arrow-alt.svg");
+      &:hover {
+        animation: arrowRightHover 0.5s;
+      }
+    }
+
+    &--visible {
+      visibility: visible;
+    }
+
+    @keyframes arrowRightHover {
+      0%, 100% {
+        right: 10px;
+      }
+      50% {
+        right: 7.5px;
+      }
+    }
+
+    @keyframes arrowLeftHover {
+      0%, 100% {
+        left: 10px;
+      }
+      50% {
+        left: 7.5px;
+      }
+    }
+  }
+}

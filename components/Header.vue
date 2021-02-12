@@ -16,6 +16,9 @@
             <NuxtLink to="/">fastbreack</NuxtLink>
           </li>
           <li><NuxtLink to="/stats">Stats</NuxtLink></li>
+          <li><NuxtLink to="/stats">Leaders</NuxtLink></li>
+          <li><NuxtLink to="/stats">Explore</NuxtLink></li>
+          <li><NuxtLink to="/stats">Big Board</NuxtLink></li>
         </ul>
       </nav>
     </div>
@@ -51,7 +54,6 @@ export default class Header extends Vue {
   get headerClass(): object {
     const pathname = this.$nuxt.$router.currentRoute.path;
     const isTransparent = pathname == "/" && this.scrollY <= 50;
-    console.log(isTransparent);
     return {
       "c-header--transparent": isTransparent
     };

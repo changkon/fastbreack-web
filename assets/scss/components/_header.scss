@@ -5,10 +5,7 @@
   right: 0;
   z-index: map-get($zindex, header);
   transition: background-color 0.75s;
-
-  @include respond (tab-port) {
-    background-color: #323232;
-  }
+  background-color: #323232;
 
   &__checkbox {
     display: none;
